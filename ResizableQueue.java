@@ -3,9 +3,9 @@
  * @author Omar Saeed
  */
 
-public class ResizableQueue
+public class ResizableQueue<Item>
 {
-    String[] array;
+    Item[] array;
     int first;
     int last;
     
@@ -13,10 +13,10 @@ public class ResizableQueue
     {
         first = 0;
         last = first;
-        array = new String[1];
+        array = (Item[]) new Object[1];
     }
     
-    public void enqueue(String element)
+    public void enqueue(Item element)
     {
         if (last >= array.length)  
         {
@@ -37,11 +37,11 @@ public class ResizableQueue
         array[last++] = element;
     }
     
-    public String deqeueue()
+    public Item deqeueue()
     {
         if (isEmpty())
         {
-            return "Queue is empty";
+            return null;
         }
         
         if (getSize() <= getLength() / 4)
@@ -54,7 +54,7 @@ public class ResizableQueue
     
     public void resize(int capacity)
     {
-        String[] temp = new String[capacity];
+        Item[] temp = (Item[]) new Object[capacity];
         int firstNew = 0;
         int firstOld = first;
         
@@ -71,7 +71,7 @@ public class ResizableQueue
     // Shift all elements to start at index zero
     public void shiftArrayToBeAtZero()
     {
-        String[] temp = new String[getLength()];
+        Item[] temp = (Item[]) new Object[getLength()];
         int size = getSize();
         int i;
         
